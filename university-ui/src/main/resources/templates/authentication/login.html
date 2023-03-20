@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" th:href="@{/img/education1.png}" type="image/png">
+    <title>University - Log In</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css" media="screen"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css" media="screen"/>
+</head>
+<body>
+
+    <div class="container d-flex h-100">
+        <div class="row align-self-center w-100">
+            <div class="col-4 mx-auto">
+                <div class="shadow-lg p-3 mb-5 bg-white rounded">
+                    <div class="col align-self-center">
+                        <h1 class="p-3 text-center" th:text="#{login.form.title}"></h1>
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <p class="text-danger mt-3" th:text="${error}"></p>
+                                <form th:action="@{/userLogIn}" th:object="${user}" method="post" class="mt-3">
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label" th:text="#{login.form.login}"></label>
+                                        <input th:field="*{login}" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label" th:text="#{login.form.password}"></label>
+                                        <input th:field="*{password}" type="password" class="form-control" id="exampleInputPassword1">
+                                    </div>
+                                    <hr>
+                                    <div class="mb-3">
+                                        <button class="btn btn-success" type="submit" style="width:48%">
+                                            <span th:text="#{login.form.login.button}">
+                                            </span>
+                                        </button>
+                                        <a th:href="@{register}">
+                                            <button class="btn btn-primary" type="button" style="width:48%;float: right">
+                                            <span th:text="#{login.form.signup.button}">
+                                            </span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="card-link" th:href="@{/(lang='en')}">English</a>
+                                        <a class="card-link" th:href="@{/(lang='ru')}">Русский</a>
+                                    </div>
+                                </form>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+</body>
+</html>

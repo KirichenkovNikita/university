@@ -1,0 +1,13 @@
+university-web:
+  container_name: university-web
+  build: ./university-ui
+  ports:
+    - "8081:8080"
+  links:
+    - university-db
+
+university-db:
+  container_name: university-db
+  build: ./db
+  ports:
+    - "5432:5432"

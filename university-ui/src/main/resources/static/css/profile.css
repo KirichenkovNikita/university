@@ -1,0 +1,25 @@
+.details li {
+    list-style: none;
+}
+li {
+    margin-bottom:10px;
+}
+.jumbotron {
+    margin-bottom: 30px;
+    color: inherit;
+    background-color: #eee;
+    padding: 60px;
+}
+
+img {
+    width: 256px;
+    height: 256px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    right: 0;
+}

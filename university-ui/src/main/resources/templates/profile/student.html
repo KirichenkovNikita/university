@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" th:href="@{/img/education1.png}" type="image/png">
+    <title>University - Profile</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css" media="screen"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css" media="screen"/>
+    <link rel="stylesheet" th:href="@{/css/profile.css}" type="text/css" media="screen"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">University</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item">
+                    <a  class="nav-link" th:href="@{/university}" th:text="#{university.home}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " th:href="@{/lesson}" th:text="#{university.lessons}">Lessons</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/approve}" th:text="#{university.approve}">approve</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/course}" th:text="#{university.course}">course</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " th:href="@{/location}" th:text="#{university.location}">course</a>
+                </li>
+            </ul>
+
+            <form class="d-flex" style="margin-right: 20px;">
+                <a class="link-light" th:href="@{/university/(lang='en')}">English</a>
+            </form>
+            <form class="d-flex" style="margin-right: 20px;">
+                <a class="link-light" th:href="@{/university/(lang='ru')}">Русский</a>
+            </form>
+
+            <form class="d-flex">
+                <a th:href="@{/logout}">
+                    <button type="button" class="btn btn-primary" th:text="#{university.signout.button}"></button>
+                </a>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="pt-5 container">
+    <form enctype="multipart/form-data" th:object="${studentUpdate}" th:action="@{/profile/student/update}" method="post">
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
+                    <img th:src="@{{path}(path=${icon})}" alt="avatar" class="img">
+                </div>
+                <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
+                    <div class="container" style="border-bottom:1px solid black">
+                        <h2 th:text="#{profile.student.title}"></h2>
+                    </div>
+                    <ul class="pt-4 container details">
+                        <li>
+                            <div class="mb-3 row">
+                                <div class="col-3">
+                                    <label for="userId" class="form-label" th:text="#{profile.form.id}"></label>
+                                    <input type="hidden" th:field="*{id}"/>
+                                    <input type="hidden" th:value="*{id}"/>
+                                    <input  disabled th:field="*{id}" th:value="*{id}" type="text" class="form-control" id="userId" aria-describedby="id">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="mb-3 row">
+                                <div class="col-6">
+                                    <label for="firstName1" class="form-label" th:text="#{registration.form.firstName}"></label>
+                                    <input  th:field="*{firstName}" type="text" class="form-control" id="firstName1" aria-describedby="emailHelp"></div>
+                                <div class="col-6">
+                                    <label for="lastName1" class="form-label" th:text="#{registration.form.lastName}"></label>
+                                    <input  th:field="*{lastName}" type="text" class="form-control" id="lastName1" aria-describedby="emailHelp">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="mb-3 row">
+                                <div class="col-4">
+                                    <label for="file" class="form-label" th:text="#{profile.form.img}"></label>
+                                    <input type="file" name="file" id="file">
+                                </div>
+                                <div class="col-8 text-end pt-3">
+                                    <button type="submit" class="btn btn-primary" th:text="#{profile.form.save}"></button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </form>
+    <h2 class="mt-2 mb-2" th:text="#{lesson.currentLessons}">Current lessons</h2>
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table table-bordered text-center">
+                <thead>
+                <tr class="bg-light-gray">
+                    <th class="text-uppercase">Time
+                    </th>
+                    <th class="text-uppercase">Monday</th>
+                    <th class="text-uppercase">Tuesday</th>
+                    <th class="text-uppercase">Wednesday</th>
+                    <th class="text-uppercase">Thursday</th>
+                    <th class="text-uppercase">Friday</th>
+                    <th class="text-uppercase">Saturday</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="row: ${lessonsWeek}">
+                    <td th:each="cell: ${row.rows}">
+                        <span th:if="${#strings.isEmpty(cell.link)}" th:text="${cell.name}"></span>
+                        <a th:if="${cell.link != ''}" target="_blank" th:href="${cell.link}" class="link-primary" th:text="${cell.name}"></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <h2 class="mt-2 mb-2" th:text="#{lesson.table}">Lessons table</h2>
+    <table id="example" class="table table-bordered" style="width: 100%">
+        <thead>
+        <tr>
+            <th th:text="#{lesson.course}">Course</th>
+            <th th:text="#{lesson.location}">Location</th>
+            <th th:text="#{lesson.startdate}">Start date</th>
+            <th th:text="#{lesson.enddate}">End date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="lesson : ${lessons}">
+            <td th:text="${lesson.courseName}">Course</td>
+            <td>
+                <a target="_blank" th:href="${lesson.locationHref}" class="link-primary" th:text="${lesson.locationName}"></a>
+            </td>
+            <td th:text="${lesson.start}">Start date</td>
+            <td th:text="${lesson.end}">End date</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <span class="text-muted" th:text="#{footer.title}"></span>
+    </div>
+</footer>
+</body>
+</html>

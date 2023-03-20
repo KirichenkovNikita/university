@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" th:href="@{/img/education1.png}" type="image/png">
+    <title>University - Main page</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css" media="screen"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css" media="screen"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">University</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item">
+                    <a  class="nav-link active" th:href="@{/university}" th:text="#{university.home}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " th:href="@{/lesson}" th:text="#{university.lessons}">Lessons</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/approve}" th:text="#{university.approve}">approve</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/course}" th:text="#{university.course}">course</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " th:href="@{/location}" th:text="#{university.location}">course</a>
+                </li>
+            </ul>
+
+            <form class="d-flex" style="margin-right: 20px;">
+                <a class="link-light" th:href="@{/university/(lang='en')}">English</a>
+            </form>
+            <form class="d-flex" style="margin-right: 20px;">
+                <a class="link-light" th:href="@{/university/(lang='ru')}">Русский</a>
+            </form>
+
+            <form class="d-flex">
+                <a th:href="@{/logout}">
+                    <button type="button" class="btn btn-primary" th:text="#{university.signout.button}"></button>
+                </a>
+            </form>
+        </div>
+    </div>
+</nav>
+<main class="pt-5 container">
+    <div class="bg-light p-5 rounded">
+        <h1>University application</h1>
+        <p class="lead">Detailed description of the university application</p>
+    </div>
+</main>
+
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <span class="text-muted" th:text="#{footer.title}"></span>
+    </div>
+</footer>
+</body>
+</html>
