@@ -27,7 +27,12 @@
             <version>${hamcrest.version}</version>
             <scope>test</scope>
         </dependency>
-    </dependencies>
+      <dependency>
+         <groupId>ch.qos.logback</groupId>
+         <artifactId>logback-classic</artifactId>
+         <version>1.5.10</version>
+      </dependency>
+   </dependencies>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
