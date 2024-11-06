@@ -27,7 +27,12 @@
             <artifactId>university-ui</artifactId>
             <scope>compile</scope>
         </dependency>
-    </dependencies>
+      <dependency>
+         <groupId>ch.qos.logback</groupId>
+         <artifactId>logback-classic</artifactId>
+         <version>1.5.10</version>
+      </dependency>
+   </dependencies>
 
     <properties>
         <sonar.coverage.jacoco.xmlReportPaths>${basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
